@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwas BS — IT Operations Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #16161f;
+    --accent: #6c63ff;
+    --accent2: #00e5ff;
+    --accent3: #ff6b6b;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --border: rgba(108,99,255,0.18);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+    line-height: 1.7; overflow-x: hidden;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none; z-index: 0;
+  }
+  .orb1 {
+    position: fixed; width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%);
+    top: -250px; right: -250px; pointer-events: none; z-index: 0;
+  }
+  .orb2 {
+    position: fixed; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    bottom: 50px; left: -150px; pointer-events: none; z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 60px; display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(24px); background: rgba(10,10,15,0.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.08em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 60px 80px; max-width: 1200px; margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 22px;
+    display: flex; align-items: center; gap: 14px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent2); }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 6rem); line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 18px;
+    animation: fadeUp 0.8s 0.12s ease both;
+  }
+  .hero-name .grad {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-tagline {
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+    font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+    color: #9090a8; max-width: 780px; margin-bottom: 44px;
+    line-height: 1.8;
+    animation: fadeUp 0.8s 0.24s ease both;
+  }
+  .hero-tagline strong { color: var(--text); font-weight: 500; }
+
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px;
+    animation: fadeUp 0.8s 0.36s ease both;
+  }
+  .pill {
+    display: flex; align-items: center; gap: 8px; padding: 9px 16px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 100px;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--muted); text-decoration: none; transition: all 0.3s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.18); }
+  .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.48s ease both;
+  }
+  .stat { }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+  /* AWARDS TICKER */
+  .ticker-wrap {
+    position: relative; z-index: 1;
+    overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 12px 0; background: rgba(108,99,255,0.04);
+    margin-bottom: 0;
+  }
+  .ticker {
+    display: flex; gap: 60px; width: max-content;
+    animation: ticker 20s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ticker-item::before { content: '★'; color: var(--accent); font-size: 0.6rem; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* CONTAINER */
+  .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 80px 60px 120px; }
+  .section { margin-bottom: 96px; }
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 44px; }
+  .section-tag {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
+    padding: 3px 10px; border: 1px solid rgba(108,99,255,0.3); border-radius: 4px;
+  }
+  .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.9rem; letter-spacing: -0.01em; }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+  /* SUMMARY */
+  .summary-box {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    padding: 40px 44px; position: relative; overflow: hidden;
+  }
+  .summary-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+  }
+  .summary-text {
+    font-size: 0.95rem; color: #b8b8cc; line-height: 1.9;
+  }
+  .summary-text strong { color: var(--text); font-weight: 500; }
+
+  /* EXPERIENCE */
+  .exp-grid { display: flex; flex-direction: column; gap: 20px; }
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 34px 36px;
+    position: relative; overflow: hidden; transition: all 0.4s;
+  }
+  .exp-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 3px 0 0 3px; opacity: 0; transition: opacity 0.3s;
+  }
+  .exp-card:hover { border-color: rgba(108,99,255,0.38); transform: translateX(5px); box-shadow: 0 24px 64px rgba(0,0,0,0.45); }
+  .exp-card:hover::before { opacity: 1; }
+  .exp-card.active { border-color: rgba(0,229,255,0.2); }
+  .exp-card.active::before { opacity: 1; background: linear-gradient(180deg, var(--accent2), var(--accent)); }
+
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.12rem; }
+  .exp-badge {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+    padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+  }
+  .badge-active { background: rgba(0,229,255,0.1); color: var(--accent2); border: 1px solid rgba(0,229,255,0.25); }
+  .badge-past   { background: rgba(108,99,255,0.1); color: #a0a0e0; border: 1px solid rgba(108,99,255,0.2); }
+
+  .exp-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; flex-wrap: wrap; }
+  .exp-company { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .exp-client { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: #8080a0; }
+  .exp-location { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; }
+
+  .exp-sub { /* TCS sub-roles */ }
+  .sub-role {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    padding: 10px 0; border-bottom: 1px solid rgba(108,99,255,0.1);
+    margin-bottom: 4px;
+  }
+  .sub-role:last-of-type { border-bottom: none; margin-bottom: 16px; }
+  .sub-role-title { font-size: 0.88rem; color: #c0c0d8; font-weight: 400; }
+  .sub-role-date { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .exp-bullets li { font-size: 0.87rem; color: #ababc0; padding-left: 18px; position: relative; line-height: 1.65; }
+  .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.68rem; top: 3px; }
+  strong { color: #d8d8ec; font-weight: 500; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; transition: all 0.3s; }
+  .skill-group:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-3px); }
+  .skill-group-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag {
+    padding: 4px 11px; background: rgba(108,99,255,0.09); border: 1px solid rgba(108,99,255,0.18);
+    border-radius: 6px; font-size: 0.78rem; color: var(--text); transition: all 0.2s;
+  }
+  .skill-tag:hover { background: rgba(108,99,255,0.2); border-color: var(--accent); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .edu-card::after {
+    content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(108,99,255,0.13), transparent); pointer-events: none;
+  }
+  .edu-card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .edu-degree { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; margin-bottom: 5px; color: var(--accent2); letter-spacing: 0.03em; text-transform: uppercase; }
+  .edu-school { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+  .edu-meta { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.07em; }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 13px; transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(0,229,255,0.28); transform: translateY(-2px); }
+  .cert-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+  .ci-azure { background: rgba(0,120,255,0.14); }
+  .ci-ai    { background: rgba(108,99,255,0.14); }
+  .ci-sec   { background: rgba(255,107,107,0.14); }
+  .ci-itil  { background: rgba(0,229,255,0.14); }
+  .ci-m365  { background: rgba(255,185,0,0.14); }
+  .ci-lang  { background: rgba(0,200,100,0.14); }
+  .cert-name { font-size: 0.83rem; font-weight: 500; line-height: 1.4; color: var(--text); }
+  .cert-issuer { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); margin-top: 3px; }
+
+  /* AWARDS */
+  .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .award-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px;
+    display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s;
+  }
+  .award-card:hover { border-color: rgba(255,185,0,0.3); transform: translateY(-2px); }
+  .award-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .award-name { font-size: 0.85rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .award-org { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); margin-top: 3px; }
+
+  /* LANGUAGES */
+  .lang-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+  .lang-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 24px; display: flex; flex-direction: column; gap: 4px; transition: all 0.3s; min-width: 160px;
+  }
+  .lang-card:hover { border-color: rgba(0,229,255,0.28); transform: translateY(-2px); }
+  .lang-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; }
+  .lang-level { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  footer {
+    position: relative; z-index: 1; text-align: center; padding: 36px 60px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 22px; }
+    .nav-links { display: none; }
+    .hero { padding: 96px 22px 60px; }
+    .container { padding: 60px 22px 80px; }
+    .hero-stats { gap: 20px; }
+    footer { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="orb1"></div>
+<div class="orb2"></div>
+
+<nav>
+  <div class="nav-logo">V<span>.</span>B<span>.</span>S</div>
+  <ul class="nav-links">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">IT Operations Engineer · Stuttgart, Germany</div>
+  <h1 class="hero-name"><span class="grad">Vishwas</span><br>Ballenahalli S.</h1>
+  <p class="hero-tagline">
+    Proven expertise in <strong>enterprise application operations, cloud infrastructure, and DevOps automation</strong> across Azure, hybrid, and on-premises environments. Azure 7× Certified · Capgemini · TCS · MANN+HUMMEL · Gold Medalist.
+  </p>
+  <div class="hero-contact">
+    <a href="mailto:vishwasshivarudrappa1997@gmail.com" class="pill"><span class="dot"></span>vishwasshivarudrappa1997@gmail.com</a>
+    <span class="pill"><span class="dot"></span>+49-15511318710</span>
+    <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank" class="pill"><span class="dot"></span>linkedin.com/in/vishwasbs</a>
+    <span class="pill"><span class="dot"></span>Stuttgart, Germany</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">7×</div><div class="stat-label">Azure Certified</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Degrees</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Awards</div></div>
+  </div>
+</section>
+
+<!-- AWARDS TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Best Outgoing Student Gold Medal · Malnad College of Engineering 2019–2020</span>
+    <span class="ticker-item">Xcelerate Warrior · Capgemini</span>
+    <span class="ticker-item">Fresco Play Miles Award · TCS</span>
+    <span class="ticker-item">Falcon Award · TCS</span>
+    <span class="ticker-item">Best Team Award · TCS</span>
+    <span class="ticker-item">Azure 7× Certified</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Best Outgoing Student Gold Medal · Malnad College of Engineering 2019–2020</span>
+    <span class="ticker-item">Xcelerate Warrior · Capgemini</span>
+    <span class="ticker-item">Fresco Play Miles Award · TCS</span>
+    <span class="ticker-item">Falcon Award · TCS</span>
+    <span class="ticker-item">Best Team Award · TCS</span>
+    <span class="ticker-item">Azure 7× Certified</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <section class="section fade-in" id="summary">
+    <div class="section-header">
+      <span class="section-tag">00</span>
+      <h2 class="section-title">Summary</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="summary-box">
+      <p class="summary-text">
+        Proven IT Operations Engineer with strong expertise in <strong>end-to-end deployment, automation, and operational oversight</strong> of enterprise applications — including cloud-native, COTS, and SaaS solutions. Adept at operating and optimizing workloads across <strong>Azure, on-premises, and hybrid cloud environments</strong>, ensuring high availability, security, scalability, and reliability of mission-critical systems. Acted as the primary <strong>Technical Point of Contact (POC)</strong> and service owner for critical Line of Business (LOB) applications. Combines <strong>DevOps practices</strong> such as CI/CD automation, Infrastructure as Code, and monitoring with a strong <strong>ITIL-based operations mindset</strong>. Effectively bridges the gap between business stakeholders, development teams, and operations — translating business requirements into automated, reliable, and scalable Azure solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section fade-in" id="experience">
+    <div class="section-header">
+      <span class="section-tag">01</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid">
+
+      <!-- M+H Working Student -->
+      <div class="exp-card active">
+        <div class="exp-header">
+          <div class="exp-role">Working Student — Digital Business Solutions</div>
+          <span class="exp-badge badge-active">Apr 2026 — Present</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">MANN + HUMMEL</span>
+          <span class="exp-client">Ludwigsburg, Germany</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Supporting scoping and execution of <strong>digital transformation initiatives</strong> within the DBS team; bridging business requirements and IT implementation.</li>
+          <li>Working with enterprise business systems to support <strong>data integrity, reporting, and system configurations</strong> for reliable operational decision-making.</li>
+          <li>Analyzing existing business and IT workflows to identify inefficiencies and proposing streamlined solutions aligned with <strong>ITIL best practices</strong>.</li>
+          <li>Acting as liaison between business units and IT teams to translate functional requirements into technical specifications across cross-functional projects.</li>
+          <li>Supporting project tracking, documentation, and stakeholder coordination for DBS initiatives with full compliance and governance traceability.</li>
+        </ul>
+      </div>
+
+      <!-- Capgemini -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Consultant</div>
+          <span class="exp-badge badge-past">Feb 2025 — Sep 2025 · 8 mos</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">Capgemini</span>
+          <span class="exp-client">Client: TotalEnergies SE</span>
+        </div>
+        <div class="exp-location">📍 Bengaluru, India · Engineering & R&D Services</div>
+        <ul class="exp-bullets">
+          <li>Managed enterprise applications across <strong>Azure, hybrid, and on-premises environments</strong>, ensuring high availability via monitoring, performance tuning, capacity planning, scaling, redundancy, and automated alerting. Supported Azure App Services, AKS, VMs, Key Vaults, and networking components.</li>
+          <li>Acted as primary technical contact for incidents; performed root-cause analysis using <strong>Azure Monitor, Log Analytics, Application Insights, and Kusto queries</strong>. Drove process improvements to eliminate recurring issues.</li>
+          <li>Built and maintained <strong>Azure DevOps CI/CD pipelines</strong> and leveraged Infrastructure as Code (ARM, Terraform, GitOps) with PowerShell and Azure CLI for provisioning, patching, and remediation. Implemented self-healing scripts and rollback strategies.</li>
+          <li>Implemented centralized logging, metrics, tracing, and dashboards. Enforced <strong>Azure security best practices</strong> (RBAC, Key Vault, network controls) and maintained GDPR, ISO, and SOX compliance.</li>
+        </ul>
+      </div>
+
+      <!-- M+H Engineer -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Engineer — Application Operations Center</div>
+          <span class="exp-badge badge-past">Feb 2023 — Feb 2025 · 2 yrs</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">MANN + HUMMEL GmbH</span>
+        </div>
+        <div class="exp-location">📍 Bengaluru, India</div>
+        <ul class="exp-bullets">
+          <li>Managed IT asset lifecycle including procurement, configuration, and secure onboarding of laptops and mobile devices with full compliance standardization.</li>
+          <li>Monitored applications and infrastructure using <strong>Splunk, Dynatrace, NewRelic, and Icinga</strong>; conducted performance tuning, redundancy planning, and proactive capacity management.</li>
+          <li>Coordinated <strong>incident, problem, and change management</strong> across teams; performed root-cause analysis using logs and metrics to implement sustainable fixes and reduce downtime.</li>
+          <li>Automated operational tasks using <strong>PowerShell and Azure CLI</strong>, streamlining patching, device setup, and remediation. Supported ITIL-aligned change and release management.</li>
+          <li>Partnered with stakeholders to align IT solutions with workflows; enforced GDPR and ISO compliance and improved application performance via shared observability practices.</li>
+        </ul>
+      </div>
+
+      <!-- TCS -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">System Engineer (and progression)</div>
+          <span class="exp-badge badge-past">Sep 2020 — Feb 2023 · 2.5 yrs</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">Tata Consultancy Services</span>
+          <span class="exp-client">Client: American Express (Amex–AXP)</span>
+        </div>
+        <div class="exp-location">📍 Bengaluru, India · BFSI CBO — Cognitive Business Operations</div>
+
+        <div class="exp-sub">
+          <div class="sub-role"><span class="sub-role-title">System Engineer</span><span class="sub-role-date">Sep 2022 — Feb 2023</span></div>
+          <div class="sub-role"><span class="sub-role-title">Assistant System Engineer</span><span class="sub-role-date">Sep 2021 — Sep 2022</span></div>
+          <div class="sub-role"><span class="sub-role-title">Assistant System Engineer Trainee</span><span class="sub-role-date">Sep 2020 — Sep 2021</span></div>
+        </div>
+
+        <ul class="exp-bullets">
+          <li>Supported Amex servicing portals ensuring <strong>24×7 uptime</strong>, optimized workflows, and resource availability across all environments.</li>
+          <li>Implemented <strong>Log Analytics, Application Insights, Splunk, Dynatrace, and MSSQL monitoring</strong>; built dashboards and alerts to proactively detect performance issues.</li>
+          <li>Acted as first responder for production incidents; performed triage, troubleshooting, and <strong>root-cause analysis using Kusto queries</strong>. Coordinated with Tier-3 and dev teams for permanent fixes.</li>
+          <li>Managed <strong>ITIL-aligned change requests</strong> including approvals, scheduling, impact analysis, rollback strategies, and post-deployment validation across Dev, UAT, and Production.</li>
+          <li>Executed OS, database, and application patching with <strong>zero downtime</strong>. Automated certificate renewals with AppViewX and PowerShell; enforced RBAC and compliance standards.</li>
+        </ul>
+      </div>
+
+      <!-- Internships -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Earlier Roles & Internships</div>
+        </div>
+        <div class="exp-location" style="margin-bottom:14px;">📍 Hassan, India</div>
+        <ul class="exp-bullets">
+          <li><strong>Intern — IoT & ASP.NET</strong> · MTEM Associates · Sep 2019 – Sep 2020</li>
+          <li><strong>Academic Mentor</strong> · CFAL India · Sep 2017 – Sep 2019</li>
+          <li><strong>Intern — Digital Innovation & Transformation</strong> · Jio · Jun 2018 – Jul 2018</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section fade-in" id="education">
+    <div class="section-header">
+      <span class="section-tag">02</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">M.Sc. Information Technology</div>
+        <div class="edu-school">University of Stuttgart</div>
+        <div class="edu-meta">Stuttgart, Germany · Oct 2025 — Present · TU9</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">M.Tech. Cloud Computing</div>
+        <div class="edu-school">BITS Pilani (WILP)</div>
+        <div class="edu-meta">Pilani, India · Dec 2023 — Jan 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">B.E. Electronics & Communication</div>
+        <div class="edu-school">Malnad College of Engineering</div>
+        <div class="edu-meta">VTU, Hassan · 2016 — 2020 · 🥇 Gold Medalist</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section fade-in" id="skills">
+    <div class="section-header">
+      <span class="section-tag">03</span>
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Cloud & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Azure</span>
+          <span class="skill-tag">AKS</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">ARM Templates</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">GitOps</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Monitoring & Observability</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Dynatrace</span>
+          <span class="skill-tag">New Relic</span>
+          <span class="skill-tag">Icinga</span>
+          <span class="skill-tag">Azure Monitor</span>
+          <span class="skill-tag">AppViewX</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Automation & Dev</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PowerShell</span>
+          <span class="skill-tag">Azure CLI</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">Kusto (KQL)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">ITSM & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">ServiceNow</span>
+          <span class="skill-tag">ITIL V4</span>
+          <span class="skill-tag">Atlassian Suite</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">MSSQL</span>
+          <span class="skill-tag">O365</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Security & Compliance</div>
+        <div class="skill-tags">
+          <span class="skill-tag">RBAC</span>
+          <span class="skill-tag">Key Vault</span>
+          <span class="skill-tag">GDPR</span>
+          <span class="skill-tag">ISO</span>
+          <span class="skill-tag">SOX</span>
+          <span class="skill-tag">Firewalls</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Core Competencies</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Incident Management</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">RCA</span>
+          <span class="skill-tag">Change Management</span>
+          <span class="skill-tag">Systems Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section fade-in" id="certifications">
+    <div class="section-header">
+      <span class="section-tag">04</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-icon ci-azure">☁️</div><div><div class="cert-name">Azure Administrator Associate</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-azure">🔷</div><div><div class="cert-name">Azure Fundamentals (AZ-900)</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-azure">📊</div><div><div class="cert-name">Azure Data Fundamentals</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-ai">🤖</div><div><div class="cert-name">Azure AI Fundamentals</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-ai">⚡</div><div><div class="cert-name">Power Platform Fundamentals</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-sec">🔐</div><div><div class="cert-name">Security, Compliance & Identity Fundamentals</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-itil">📋</div><div><div class="cert-name">ITIL V4 Foundation</div><div class="cert-issuer">PeopleCert</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-m365">📱</div><div><div class="cert-name">Microsoft 365 Fundamentals</div><div class="cert-issuer">Microsoft Certified</div></div></div>
+      <div class="cert-card"><div class="cert-icon ci-lang">🌐</div><div><div class="cert-name">IELTS — International English Language Testing System</div><div class="cert-issuer">British Council / IDP</div></div></div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="section fade-in" id="languages">
+    <div class="section-header">
+      <span class="section-tag">05</span>
+      <h2 class="section-title">Languages</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card"><div class="lang-name">English</div><div class="lang-level">Full Professional (C1)</div></div>
+      <div class="lang-card"><div class="lang-name">German</div><div class="lang-level">Limited Working (A2)</div></div>
+      <div class="lang-card"><div class="lang-name">Kannada</div><div class="lang-level">Native / Bilingual</div></div>
+      <div class="lang-card"><div class="lang-name">Hindi</div><div class="lang-level">Full Professional</div></div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="section fade-in" id="awards">
+    <div class="section-header">
+      <span class="section-tag">06</span>
+      <h2 class="section-title">Honours & Awards</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card"><div class="award-icon">🥇</div><div><div class="award-name">Best Outgoing Student Gold Medal</div><div class="award-org">Malnad College of Engineering, 2019–2020</div></div></div>
+      <div class="award-card"><div class="award-icon">🏆</div><div><div class="award-name">Xcelerate Warrior</div><div class="award-org">Capgemini</div></div></div>
+      <div class="award-card"><div class="award-icon">🎖️</div><div><div class="award-name">Fresco Play Miles Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
+      <div class="award-card"><div class="award-icon">🦅</div><div><div class="award-name">Falcon Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
+      <div class="award-card"><div class="award-icon">🤝</div><div><div class="award-name">Best Team Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Vishwas Ballenahalli Shivarudrappa · Stuttgart, Germany ·
+  <a href="mailto:vishwasshivarudrappa1997@gmail.com">vishwasshivarudrappa1997@gmail.com</a> ·
+  <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  document.querySelectorAll('.exp-card, .edu-card, .skill-group, .cert-card, .award-card, .lang-card').forEach((c, i) => {
+    c.style.transitionDelay = `${(i % 4) * 0.07}s`;
+  });
+</script>
+</body>
+</html>
