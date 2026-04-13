@@ -90,6 +90,31 @@
     display: flex; flex-direction: column; justify-content: center;
     padding: 120px 60px 80px; max-width: 1200px; margin: 0 auto;
   }
+  .hero-content {
+    display: flex; align-items: center; gap: 60px; max-width: 100%;
+  }
+  .hero-copy {
+    flex: 1; min-width: 0;
+  }
+  .hero-photo {
+    flex-shrink: 0; width: 280px; height: 280px;
+    border-radius: 50%; overflow: hidden;
+    border: 4px solid var(--accent); box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeUp 0.8s 0.6s ease both;
+    position: relative;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .hero-photo:hover img {
+    transform: scale(1.05);
+  }
+  .hero-photo::before {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2));
+    z-index: -1; opacity: 0.3;
+  }
   .hero-eyebrow {
     font-family: 'DM Mono', monospace; font-size: 0.72rem;
     letter-spacing: 0.22em; text-transform: uppercase;
@@ -312,8 +337,10 @@
     nav { padding: 16px 22px; }
     .nav-links { display: none; }
     .hero { padding: 96px 22px 60px; }
+    .hero-content { flex-direction: column; gap: 40px; text-align: center; }
+    .hero-photo { width: 200px; height: 200px; margin: 0 auto; }
     .container { padding: 60px 22px 80px; }
-    .hero-stats { gap: 20px; }
+    .hero-stats { gap: 20px; justify-content: center; }
     footer { padding: 28px 22px; }
   }
 </style>
@@ -328,9 +355,11 @@
     <ul class="nav-links">
       <li><a href="#summary">Summary</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#development">Development</a></li>
     </ul>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">Light Mode</button>
   </div>
@@ -338,7 +367,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-copy">
+  <div class="hero-content">
+    <div class="hero-copy">
     <div class="hero-eyebrow">IT Operations Engineer · Stuttgart, Germany</div>
     <h1 class="hero-name"><span class="grad">Vishwas</span><br>Ballenahalli S.</h1>
     <p class="hero-tagline">
@@ -357,7 +387,12 @@
       <div class="stat"><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">Awards</div></div>
     </div>
-  </section>
+    </div>
+    <div class="hero-photo">
+      <img src="profile-photo.jpg" alt="Vishwas Ballenahalli Shivarudrappa - IT Operations Engineer" loading="lazy">
+    </div>
+  </div>
+</section>
 
 <!-- AWARDS TICKER -->
 <div class="ticker-wrap">
@@ -503,6 +538,90 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section class="section fade-in" id="projects">
+    <div class="section-header">
+      <span class="section-tag">01.5</span>
+      <h2 class="section-title">Key Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid">
+
+      <!-- Azure Migration Project -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Enterprise Azure Migration & DevOps Transformation</div>
+          <span class="exp-badge badge-past">Capgemini · 2025</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">TotalEnergies SE</span>
+          <span class="exp-client">Energy Sector · Global Scale</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led migration of legacy on-premises applications to <strong>Azure cloud infrastructure</strong>, achieving 40% cost reduction and 99.9% uptime through automated CI/CD pipelines.</li>
+          <li>Implemented <strong>Infrastructure as Code</strong> using ARM templates and Terraform, enabling consistent deployments across development, staging, and production environments.</li>
+          <li>Established comprehensive monitoring with <strong>Azure Monitor and Application Insights</strong>, reducing incident response time by 60% through proactive alerting and automated remediation.</li>
+          <li>Integrated security best practices including <strong>Azure Key Vault, RBAC, and network segmentation</strong>, ensuring compliance with industry standards and regulatory requirements.</li>
+        </ul>
+      </div>
+
+      <!-- Application Operations Center Automation -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">IT Operations Automation & Digital Workplace</div>
+          <span class="exp-badge badge-past">MANN+HUMMEL · 2023-2025</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">MANN+HUMMEL GmbH</span>
+          <span class="exp-client">Automotive Industry · Global Operations</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed automated workflows for <strong>IT asset lifecycle management</strong>, reducing device onboarding time from 2 weeks to 2 days through PowerShell scripting and Azure CLI automation.</li>
+          <li>Implemented centralized monitoring dashboard using <strong>Splunk and Dynatrace</strong>, providing real-time visibility into application performance across 500+ endpoints.</li>
+          <li>Established <strong>ITIL-aligned incident response processes</strong>, achieving 95% first-call resolution rate and reducing mean time to resolution by 45%.</li>
+          <li>Led digital transformation initiatives including <strong>Microsoft 365 adoption</strong> and secure remote access solutions for hybrid workforce of 10,000+ employees.</li>
+        </ul>
+      </div>
+
+      <!-- Amex Portal Optimization -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">High-Availability Portal Operations & Performance Engineering</div>
+          <span class="exp-badge badge-past">TCS · 2020-2023</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">American Express (Amex)</span>
+          <span class="exp-client">Financial Services · 24/7 Global Operations</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Managed critical servicing portals serving <strong>millions of transactions daily</strong>, maintaining 99.99% uptime through proactive monitoring and automated failover systems.</li>
+          <li>Optimized database performance using <strong>MSSQL query tuning and indexing strategies</strong>, improving response times by 35% during peak business hours.</li>
+          <li>Implemented automated certificate management with <strong>AppViewX integration</strong>, eliminating manual renewal processes and preventing service disruptions.</li>
+          <li>Conducted comprehensive <strong>root-cause analysis</strong> for production incidents using advanced Kusto queries, implementing preventive measures that reduced recurring issues by 70%.</li>
+        </ul>
+      </div>
+
+      <!-- IoT Smart Agriculture System -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">IoT-Based Smart Agriculture Monitoring System</div>
+          <span class="exp-badge badge-past">Academic Project · 2019-2020</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-company">MTEM Associates</span>
+          <span class="exp-client">Agriculture Technology · IoT Solution</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and developed an end-to-end IoT system using <strong>Arduino, sensors, and cloud connectivity</strong> for real-time monitoring of soil moisture, temperature, and humidity.</li>
+          <li>Built web dashboard using <strong>ASP.NET and SQL Server</strong> for data visualization and automated irrigation control, reducing water usage by 30%.</li>
+          <li>Implemented <strong>machine learning algorithms</strong> for predictive analytics on crop yield optimization and pest detection.</li>
+          <li>Deployed solution in pilot farms, demonstrating <strong>scalability and reliability</strong> in real-world agricultural environments.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- EDUCATION -->
   <section class="section fade-in" id="education">
     <div class="section-header">
@@ -624,6 +743,60 @@
     </div>
   </section>
 
+  <!-- PROFESSIONAL DEVELOPMENT -->
+  <section class="section fade-in" id="development">
+    <div class="section-header">
+      <span class="section-tag">04.5</span>
+      <h2 class="section-title">Professional Development</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid">
+
+      <!-- Continuous Learning -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Continuous Learning & Skill Enhancement</div>
+          <span class="exp-badge badge-active">Ongoing</span>
+        </div>
+        <ul class="exp-bullets">
+          <li><strong>Azure Certifications:</strong> Maintaining expertise through continuous learning of Azure services, security updates, and best practices.</li>
+          <li><strong>DevOps Practices:</strong> Staying current with CI/CD advancements, Infrastructure as Code, and containerization technologies.</li>
+          <li><strong>Cloud Security:</strong> Regular training on compliance frameworks (GDPR, ISO 27001, SOX) and security implementations.</li>
+          <li><strong>Industry Trends:</strong> Following developments in AI/ML integration, multi-cloud strategies, and digital transformation methodologies.</li>
+        </ul>
+      </div>
+
+      <!-- Leadership & Soft Skills -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Leadership & Communication Development</div>
+          <span class="exp-badge badge-past">2020-Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li><strong>Technical Leadership:</strong> Mentoring junior engineers and conducting knowledge-sharing sessions on Azure operations and DevOps practices.</li>
+          <li><strong>Stakeholder Management:</strong> Developing skills in translating technical requirements to business stakeholders and vice versa.</li>
+          <li><strong>Crisis Management:</strong> Leading incident response teams and coordinating cross-functional resolution efforts.</li>
+          <li><strong>Process Improvement:</strong> Driving ITIL-aligned process enhancements and implementing automation to improve operational efficiency.</li>
+        </ul>
+      </div>
+
+      <!-- Academic Excellence -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-role">Academic & Research Pursuits</div>
+          <span class="exp-badge badge-active">2023-Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li><strong>M.Tech Cloud Computing:</strong> Advanced studies in distributed systems, cloud architecture, and scalable application design.</li>
+          <li><strong>M.Sc. Information Technology:</strong> Research-focused program at University of Stuttgart exploring cutting-edge IT technologies.</li>
+          <li><strong>Research Interests:</strong> IoT integration with cloud platforms, AI-driven operations, and sustainable cloud computing solutions.</li>
+          <li><strong>Academic Achievements:</strong> Gold medalist in B.E. Electronics & Communication, demonstrating consistent academic excellence.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- LANGUAGES -->
   <section class="section fade-in" id="languages">
     <div class="section-header">
@@ -652,6 +825,20 @@
       <div class="award-card"><div class="award-icon">🎖️</div><div><div class="award-name">Fresco Play Miles Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
       <div class="award-card"><div class="award-icon">🦅</div><div><div class="award-name">Falcon Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
       <div class="award-card"><div class="award-icon">🤝</div><div><div class="award-name">Best Team Award</div><div class="award-org">Tata Consultancy Services</div></div></div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section class="section fade-in" id="interests">
+    <div class="section-header">
+      <span class="section-tag">07</span>
+      <h2 class="section-title">Interests & Activities</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="summary-box">
+      <p class="summary-text">
+        Beyond professional pursuits, I am passionate about <strong>technology innovation and community engagement</strong>. I actively participate in tech meetups and hackathons, staying connected with the latest industry developments. My interests include exploring <strong>emerging technologies like AI/ML integration in cloud operations</strong>, contributing to open-source projects, and mentoring aspiring IT professionals. I enjoy <strong>traveling and cultural exchange</strong>, which has helped me develop strong cross-cultural communication skills essential for global IT operations. In my free time, I engage in <strong>continuous learning through online courses</strong> and maintain an active presence in professional networks to share knowledge and insights.
+      </p>
     </div>
   </section>
 
