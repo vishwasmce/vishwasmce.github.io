@@ -70,6 +70,25 @@
   }
   .theme-toggle:hover { background: rgba(255,255,255,0.18); }
 
+  .skip-link {
+    position: absolute; top: 12px; left: 12px; z-index: 110;
+    padding: 12px 16px; background: var(--card); color: var(--text);
+    border: 1px solid var(--accent); border-radius: 999px;
+    text-decoration: none; transform: translateY(-120%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    opacity: 1;
+    outline: 3px solid var(--accent2);
+    outline-offset: 3px;
+  }
+  :focus-visible {
+    outline: 3px solid var(--accent2);
+    outline-offset: 3px;
+  }
+
   body.light {
     --bg: #f7f7fc;
     --card: #ffffff;
@@ -92,6 +111,9 @@
   }
   .hero-content {
     display: flex; align-items: center; gap: 60px; max-width: 100%;
+  }
+  #main-content {
+    scroll-margin-top: 120px;
   }
   .hero-copy {
     flex: 1; min-width: 0;
@@ -346,10 +368,11 @@
 </style>
 </head>
 <body>
-<div class="orb1"></div>
-<div class="orb2"></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="orb1" aria-hidden="true"></div>
+<div class="orb2" aria-hidden="true"></div>
 
-<nav>
+<nav aria-label="Primary navigation">
   <div class="nav-logo">V<span>.</span>B<span>.</span>S</div>
   <div class="nav-actions">
     <ul class="nav-links">
@@ -366,6 +389,7 @@
 </nav>
 
 <!-- HERO -->
+<main id="main-content">
 <section class="hero">
   <div class="hero-content">
     <div class="hero-copy">
@@ -377,7 +401,7 @@
     <div class="hero-contact">
       <a href="mailto:vishwasshivarudrappa1997@gmail.com" class="pill"><span class="dot"></span>vishwasshivarudrappa1997@gmail.com</a>
       <span class="pill"><span class="dot"></span>+49-15511318710</span>
-      <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank" class="pill"><span class="dot"></span>linkedin.com/in/vishwasbs</a>
+      <a href="https://www.linkedin.com/in/vishwas-bs-969973140" target="_blank" class="pill"><span class="dot"></span>linkedin.com/in/vishwas-bs</a>
       <span class="pill"><span class="dot"></span>Stuttgart, Germany</span>
     </div>
     <div class="hero-stats">
@@ -843,11 +867,12 @@
   </section>
 
 </div>
+</main>
 
 <footer>
   Vishwas Ballenahalli Shivarudrappa · Stuttgart, Germany ·
   <a href="mailto:vishwasshivarudrappa1997@gmail.com">vishwasshivarudrappa1997@gmail.com</a> ·
-  <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/vishwas-bs-969973140" target="_blank">LinkedIn</a>
 </footer>
 
 <script>
