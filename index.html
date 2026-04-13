@@ -57,6 +57,32 @@
     color: var(--muted); text-decoration: none; transition: color 0.3s;
   }
   .nav-links a:hover { color: var(--accent2); }
+  .nav-actions {
+    display: flex; align-items: center; gap: 18px;
+  }
+  .theme-toggle {
+    appearance: none; border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.1); color: var(--text);
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 10px 16px; border-radius: 999px;
+    cursor: pointer; transition: all 0.25s ease;
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.18); }
+
+  body.light {
+    --bg: #f7f7fc;
+    --card: #ffffff;
+    --accent: #6c63ff;
+    --accent2: #006f9d;
+    --accent3: #ff4c4c;
+    --text: #14141d;
+    --muted: #5b6278;
+    --border: rgba(108,99,255,0.16);
+  }
+  body.light nav { background: rgba(255,255,255,0.9); }
+  body.light .hero-tagline { color: #5f6478; }
+  body.light .pill { background: rgba(255,255,255,0.9); }
 
   /* HERO */
   .hero {
@@ -298,36 +324,40 @@
 
 <nav>
   <div class="nav-logo">V<span>.</span>B<span>.</span>S</div>
-  <ul class="nav-links">
-    <li><a href="#summary">Summary</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-  </ul>
+  <div class="nav-actions">
+    <ul class="nav-links">
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">Light Mode</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">IT Operations Engineer · Stuttgart, Germany</div>
-  <h1 class="hero-name"><span class="grad">Vishwas</span><br>Ballenahalli S.</h1>
-  <p class="hero-tagline">
-    Proven expertise in <strong>enterprise application operations, cloud infrastructure, and DevOps automation</strong> across Azure, hybrid, and on-premises environments. Azure 7× Certified · Capgemini · TCS · MANN+HUMMEL · Gold Medalist.
-  </p>
-  <div class="hero-contact">
-    <a href="mailto:vishwasshivarudrappa1997@gmail.com" class="pill"><span class="dot"></span>vishwasshivarudrappa1997@gmail.com</a>
-    <span class="pill"><span class="dot"></span>+49-15511318710</span>
-    <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank" class="pill"><span class="dot"></span>linkedin.com/in/vishwasbs</a>
-    <span class="pill"><span class="dot"></span>Stuttgart, Germany</span>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
-    <div class="stat"><div class="stat-num">7×</div><div class="stat-label">Azure Certified</div></div>
-    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Degrees</div></div>
-    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
-    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Awards</div></div>
-  </div>
-</section>
+  <div class="hero-copy">
+    <div class="hero-eyebrow">IT Operations Engineer · Stuttgart, Germany</div>
+    <h1 class="hero-name"><span class="grad">Vishwas</span><br>Ballenahalli S.</h1>
+    <p class="hero-tagline">
+      Proven expertise in <strong>enterprise application operations, cloud infrastructure, and DevOps automation</strong> across Azure, hybrid, and on-premises environments. Azure 7× Certified · Capgemini · TCS · MANN+HUMMEL · Gold Medalist.
+    </p>
+    <div class="hero-contact">
+      <a href="mailto:vishwasshivarudrappa1997@gmail.com" class="pill"><span class="dot"></span>vishwasshivarudrappa1997@gmail.com</a>
+      <span class="pill"><span class="dot"></span>+49-15511318710</span>
+      <a href="https://www.linkedin.com/in/vishwasbs-969973140" target="_blank" class="pill"><span class="dot"></span>linkedin.com/in/vishwasbs</a>
+      <span class="pill"><span class="dot"></span>Stuttgart, Germany</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">7×</div><div class="stat-label">Azure Certified</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Degrees</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Awards</div></div>
+    </div>
+  </section>
 
 <!-- AWARDS TICKER -->
 <div class="ticker-wrap">
@@ -642,6 +672,24 @@
   document.querySelectorAll('.exp-card, .edu-card, .skill-group, .cert-card, .award-card, .lang-card').forEach((c, i) => {
     c.style.transitionDelay = `${(i % 4) * 0.07}s`;
   });
+
+  const themeToggle = document.getElementById('theme-toggle');
+  const storedTheme = localStorage.getItem('theme');
+  const preferredTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const applyTheme = theme => {
+    document.body.classList.toggle('light', theme === 'light');
+    if (themeToggle) {
+      themeToggle.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+    localStorage.setItem('theme', theme);
+  };
+
+  applyTheme(preferredTheme);
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
+    });
+  }
 </script>
 </body>
 </html>
