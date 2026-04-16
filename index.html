@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio of Vishwas BS, IT Operations Engineer specializing in Azure, enterprise operations, automation, and cloud platforms." />
   <title>Vishwas BS — IT Operations Engineer</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer"/>
 
   <style>
     /* =============================================
@@ -53,6 +55,15 @@
 
     html { scroll-behavior: smooth; font-size: 16px; }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -74,6 +85,12 @@
     ul { list-style: none; }
 
     section { padding: 100px 0; }
+
+    section,
+    footer {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 800px;
+    }
 
     .container {
       max-width: 1120px;
@@ -177,12 +194,25 @@
       transition: all var(--transition);
     }
     .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    .theme-toggle:focus-visible,
+    .btn:focus-visible,
+    .social-link:focus-visible,
+    .mobile-menu a:focus-visible,
+    .nav-links a:focus-visible,
+    .contact-item-link:focus-visible,
+    .hamburger:focus-visible,
+    #scrollTop:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
 
     /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column; gap: 5px;
       cursor: pointer; padding: 8px;
+      background: transparent;
+      border: 0;
     }
     .hamburger span {
       display: block; width: 24px; height: 2px;
@@ -309,6 +339,10 @@
       border-color: var(--accent);
       color: var(--accent);
       transform: translateY(-2px);
+    }
+    .btn-block {
+      width: 100%;
+      justify-content: center;
     }
 
     /* Profile photo */
@@ -702,6 +736,10 @@
     .contact-item {
       display: flex; align-items: center; gap: 16px;
     }
+    .contact-item-link {
+      display: flex; align-items: center; gap: 16px;
+      color: inherit;
+    }
     .contact-item-icon {
       width: 44px; height: 44px; flex-shrink: 0;
       background: var(--accent-glow);
@@ -828,16 +866,6 @@
       transform: translateY(0);
     }
 
-    /* Typing cursor */
-    .cursor {
-      display: inline-block;
-      width: 3px; height: 0.85em;
-      background: var(--accent);
-      margin-left: 4px;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-
     /* =============================================
        RESPONSIVE
     ============================================= */
@@ -882,12 +910,16 @@
       transition: color var(--transition);
     }
     .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu[hidden] { display: none !important; }
 
     /* Divider */
     .section-divider {
       width: 100%; height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin: 0;
+    }
+    .section-label-spaced {
+      margin-top: 48px;
     }
   </style>
 </head>
@@ -910,24 +942,24 @@
     </ul>
 
     <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
         <i class="fa-solid fa-moon" id="themeIcon"></i>
       </button>
-      <div class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
   </div>
 </nav>
 
 <!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMobileMenu()">About</a>
-  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
-  <a href="#skills" onclick="closeMobileMenu()">Skills</a>
-  <a href="#education" onclick="closeMobileMenu()">Education</a>
-  <a href="#certifications" onclick="closeMobileMenu()">Certifications</a>
-  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <!-- =============================================
@@ -972,7 +1004,7 @@
           <a href="mailto:vishwasmtc27@gmail.com" class="btn btn-primary">
             <i class="fa-solid fa-envelope"></i> Contact Me
           </a>
-          <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" class="btn btn-outline">
+          <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Open LinkedIn profile in a new tab">
             <i class="fa-brands fa-linkedin"></i> LinkedIn
           </a>
         </div>
@@ -981,7 +1013,9 @@
       <!-- Profile Photo -->
       <div class="hero-photo-wrap">
         <div class="hero-photo-ring">
-          <img class="hero-photo" id="profileImg" src="profile-photo.jpg" alt="Vishwas BS" />
+          <picture>
+            <img class="hero-photo" id="profileImg" src="profile-photo.jpg" alt="Portrait of Vishwas BS" width="300" height="300" loading="eager" fetchpriority="high" decoding="async" />
+          </picture>
           <div class="hero-photo-badge">
             <i class="fa-solid fa-briefcase"></i>
             &nbsp;Working Student - DBS
@@ -1137,7 +1171,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="exp-header">
-            <span class="exp-role">System Engineer → ASE Trainee</span>
+            <span class="exp-role">System Engineer</span>
             <span class="exp-period">Sep 2020 – Feb 2023</span>
           </div>
           <div class="exp-company"><i class="fa-solid fa-building"></i>&nbsp; Tata Consultancy Services · Bengaluru (Client: American Express)</div>
@@ -1351,7 +1385,7 @@
     </div>
 
     <!-- Awards -->
-    <p class="section-label reveal" style="margin-top:48px">// Recognition</p>
+    <p class="section-label reveal section-label-spaced">// Recognition</p>
     <div class="awards-row reveal">
       <div class="award-pill"><i class="fa-solid fa-medal"></i> Best Outgoing Student - Malnad College of Engineering, Hassan (2019-2020)</div>
       <div class="award-pill"><i class="fa-solid fa-trophy"></i> Xcelerate Warrior</div>
@@ -1379,20 +1413,20 @@
           cloud platforms, and digital transformation work.
         </p>
         <div class="contact-items">
-          <div class="contact-item">
+          <a class="contact-item contact-item-link" href="mailto:vishwasmtc27@gmail.com">
             <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
             <div>
               <div class="contact-item-label">Email</div>
               <div class="contact-item-value">vishwasmtc27@gmail.com</div>
             </div>
-          </div>
-          <div class="contact-item">
+          </a>
+          <a class="contact-item contact-item-link" href="tel:+4915511318710">
             <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
             <div>
               <div class="contact-item-label">Phone</div>
               <div class="contact-item-value">+49 155 1131 8710</div>
             </div>
-          </div>
+          </a>
           <div class="contact-item">
             <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div>
@@ -1400,34 +1434,36 @@
               <div class="contact-item-value">Allmandring 24A, Stuttgart 70569</div>
             </div>
           </div>
-          <div class="contact-item">
+          <a class="contact-item contact-item-link" href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer">
             <div class="contact-item-icon"><i class="fa-brands fa-linkedin"></i></div>
             <div>
               <div class="contact-item-label">LinkedIn</div>
               <div class="contact-item-value">linkedin.com/in/vishwas-bs-969973140/</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
       <div class="contact-card reveal">
         <h3>Send a Message</h3>
         <p>I'll get back to you within 24 hours.</p>
-        <div class="form-group">
-          <label for="fname">Full Name</label>
-          <input type="text" id="fname" placeholder="Your name" />
-        </div>
-        <div class="form-group">
-          <label for="femail">Email</label>
-          <input type="email" id="femail" placeholder="your@email.com" />
-        </div>
-        <div class="form-group">
-          <label for="fmsg">Message</label>
-          <textarea id="fmsg" placeholder="What's on your mind?"></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="handleFormSubmit()">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
-        </button>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="fname">Full Name</label>
+            <input type="text" id="fname" name="fullName" autocomplete="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" autocomplete="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Message</label>
+            <textarea id="fmsg" name="message" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -1442,7 +1478,7 @@
       © 2026 Vishwas Ballenahalli Shivarudrappa · Built with ❤️ in Stuttgart
     </div>
     <div class="footer-socials">
-      <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" class="social-link" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn">
         <i class="fa-brands fa-linkedin-in"></i>
       </a>
       <a href="mailto:vishwasmtc27@gmail.com" class="social-link" title="Email">
@@ -1456,7 +1492,7 @@
 </footer>
 
 <!-- Scroll to top -->
-<button id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button id="scrollTop" aria-label="Scroll to top" type="button">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
@@ -1464,87 +1500,109 @@
      JAVASCRIPT
 ============================================= -->
 <script>
-  document.getElementById('profileImg').src = 'profile-photo.jpg';
-
-  // ─── Theme ────────────────────────────────────────
   const html = document.documentElement;
   const themeIcon = document.getElementById('themeIcon');
+  const themeToggle = document.getElementById('themeToggle');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const scrollTopBtn = document.getElementById('scrollTop');
+  const contactForm = document.getElementById('contactForm');
   let currentTheme = localStorage.getItem('vbs-theme') || 'dark';
 
-  function applyTheme(t) {
-    html.setAttribute('data-theme', t);
-    themeIcon.className = t === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    localStorage.setItem('vbs-theme', t);
-    currentTheme = t;
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    localStorage.setItem('vbs-theme', theme);
+    currentTheme = theme;
   }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileMenu.hidden = true;
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMobileMenu() {
+    mobileMenu.hidden = false;
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+
+  function toggleMobileMenu() {
+    if (mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+      return;
+    }
+    openMobileMenu();
+  }
+
+  function animateSkillBars(scope) {
+    scope.querySelectorAll('.skill-fill').forEach((bar) => {
+      bar.style.width = `${bar.dataset.width}%`;
+    });
+  }
+
   applyTheme(currentTheme);
 
-  document.getElementById('themeToggle').addEventListener('click', () => {
+  themeToggle.addEventListener('click', () => {
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
   });
 
-  // ─── Mobile menu ─────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+  hamburger.addEventListener('click', toggleMobileMenu);
+  mobileMenu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMobileMenu);
   });
-  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
 
-  // ─── Scroll to top ───────────────────────────────
-  const scrollTopBtn = document.getElementById('scrollTop');
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   window.addEventListener('scroll', () => {
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+      hamburger.focus();
+    }
   });
 
-  // ─── Intersection Observer (reveal + skill bars) ─
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-
-        // Animate skill bars
-        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-
-        // Timeline items
-        if (entry.target.classList.contains('timeline-item')) {
-          entry.target.classList.add('visible');
-        }
-
-        observer.unobserve(entry.target);
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
       }
+
+      entry.target.classList.add('visible');
+      animateSkillBars(entry.target);
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .timeline-item, #skills').forEach((element) => observer.observe(element));
 
-  // ─── Skill bars global trigger ────────────────────
-  // Also trigger for any skill-fill not inside .reveal
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-        skillObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('#skills').forEach(s => skillObserver.observe(s));
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-  // ─── Form submit ─────────────────────────────────
-  function handleFormSubmit() {
-    const name = document.getElementById('fname').value.trim();
-    const email = document.getElementById('femail').value.trim();
-    const msg = document.getElementById('fmsg').value.trim();
-    if (!name || !email || !msg) {
+    const formData = new FormData(contactForm);
+    const name = (formData.get('fullName') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    const message = (formData.get('message') || '').toString().trim();
+
+    if (!name || !email || !message) {
       alert('Please fill in all fields.');
       return;
     }
-    window.location.href = `mailto:vishwasmtc27@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0AFrom: ${encodeURIComponent(email)}`;
-  }
+
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(`${message}\n\nFrom: ${email}`);
+    window.location.href = `mailto:vishwasmtc27@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Reset the form after launching the email client
+    contactForm.reset();
+  });
 </script>
 
 </body>
