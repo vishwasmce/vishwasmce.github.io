@@ -2213,12 +2213,152 @@
                   inset 0 1px 0 rgba(255,255,255,0.2);
     }
 
+    /* =============================================
+       FRAMER-STYLE ANIMATIONS
+    ============================================= */
+
+    /* Scroll Progress Bar */
+    #scrollProgressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      width: 0%;
+      z-index: 1000;
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: width 0.1s ease-out;
+    }
+
+    /* Number Counter Animation */
+    .counter-number {
+      font-variant-numeric: tabular-nums;
+      transition: all 0.3s ease-out;
+    }
+
+    /* Text Scrambler Effect */
+    .scramble-text {
+      position: relative;
+    }
+
+    .scramble-char {
+      display: inline-block;
+      opacity: 0;
+      animation: scrambleReveal 0.5s ease-out forwards;
+    }
+
+    @keyframes scrambleReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) rotateX(-90deg);
+        filter: blur(8px);
+      }
+      50% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+        filter: blur(0);
+      }
+    }
+
+    /* Mouse Glow Follower Enhanced */
+    .mouse-glow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mouse-glow.active {
+      opacity: 0.25;
+    }
+
+    /* Mouse Trail Effect */
+    .trail-dot {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      z-index: 1;
+    }
+
+    /* Glow Cursor Effect */
+    @keyframes glowCursor {
+      0% {
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.5),
+                    inset 0 0 20px rgba(201, 168, 76, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(201, 168, 76, 0.8),
+                    inset 0 0 30px rgba(201, 168, 76, 0.3);
+      }
+      100% {
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.5),
+                    inset 0 0 20px rgba(201, 168, 76, 0.2);
+      }
+    }
+
+    .glow-cursor {
+      animation: glowCursor 2s ease-in-out infinite;
+    }
+
+    /* Reveal on Scroll with Stagger */
+    @keyframes revealSlide {
+      0% {
+        opacity: 0;
+        transform: translateX(-50px) rotateY(-20deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0deg);
+      }
+    }
+
+    .reveal-slide {
+      animation: revealSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
+    /* Smooth Hover Scale */
+    .hover-scale {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05) translateY(-8px);
+    }
+
+    /* Blur & Reveal */
+    @keyframes blurReveal {
+      0% {
+        filter: blur(10px);
+        opacity: 0;
+      }
+      100% {
+        filter: blur(0);
+        opacity: 1;
+      }
+    }
+
+    .blur-reveal-animate {
+      animation: blurReveal 0.8s ease-out forwards;
+    }
+
   </style>
 </head>
 <body>
 
 <!-- 3D Canvas for particle effects -->
 <canvas id="canvas3d"></canvas>
+
+<!-- Scroll Progress Bar -->
+<div id="scrollProgressBar"></div>
 
 <!-- =============================================
      NAVIGATION
@@ -2817,6 +2957,91 @@
   let mouseX = 0;
   let mouseY = 0;
   let scrollY = 0;
+  let trailDots = [];
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
+
+  // Scroll Progress Bar Animation
+  function updateScrollProgress() {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolledPercent = (window.scrollY / scrollHeight) * 100;
+    if (scrollProgressBar) {
+      scrollProgressBar.style.width = scrolledPercent + '%';
+    }
+  }
+
+  // Mouse Trail Effect (Framer style)
+  function createTrailDot(x, y) {
+    const dot = document.createElement('div');
+    dot.className = 'trail-dot';
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    dot.style.width = '4px';
+    dot.style.height = '4px';
+    document.body.appendChild(dot);
+
+    let life = 1;
+    const fadeOut = setInterval(() => {
+      life -= 0.05;
+      dot.style.opacity = life;
+      dot.style.transform = `scale(${life})`;
+
+      if (life <= 0) {
+        clearInterval(fadeOut);
+        dot.remove();
+      }
+    }, 30);
+  }
+
+  // Text Scrambler Effect
+  function scrambleText(element) {
+    if (!element || element.classList.contains('scrambled')) return;
+
+    const text = element.textContent;
+    element.innerHTML = '';
+    element.classList.add('scrambled');
+
+    let charIndex = 0;
+    function addChar() {
+      if (charIndex < text.length) {
+        const span = document.createElement('span');
+        span.className = 'scramble-char';
+        span.textContent = text[charIndex];
+        span.style.animationDelay = `${charIndex * 0.04}s`;
+        element.appendChild(span);
+        charIndex++;
+        setTimeout(addChar, 40);
+      }
+    }
+    addChar();
+  }
+
+  // Animate Numbers Counter
+  function animateCounter(element) {
+    if (element.classList.contains('counter-animated')) return;
+
+    const text = element.textContent.trim();
+    const numberMatch = text.match(/\d+/);
+
+    if (!numberMatch) return;
+
+    const endNumber = parseInt(numberMatch[0]);
+    const prefix = text.substring(0, numberMatch.index);
+    const suffix = text.substring(numberMatch.index + numberMatch[0].length);
+
+    let currentNumber = 0;
+    const increment = Math.ceil(endNumber / 30);
+
+    element.classList.add('counter-animated');
+
+    const counter = setInterval(() => {
+      currentNumber += increment;
+      if (currentNumber >= endNumber) {
+        currentNumber = endNumber;
+        clearInterval(counter);
+      }
+      element.textContent = prefix + currentNumber + suffix;
+    }, 30);
+  }
 
   // Enhanced canvas setup for 3D AI neural network
   function setupCanvas() {
@@ -2940,13 +3165,19 @@
   window.addEventListener('scroll', () => {
     scrollY = window.scrollY;
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    updateScrollProgress();
   }, { passive: true });
 
   // Mouse tracking for 3D effects and particle interaction
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
+
+    // Create trail dots occasionally
+    if (Math.random() > 0.7) {
+      createTrailDot(e.clientX, e.clientY);
+    }
+
     // Update CSS variables for gradient positioning
     const cards = document.querySelectorAll('.stat-card, .card-3d');
     cards.forEach((card) => {
@@ -2955,7 +3186,7 @@
       const y = e.clientY - rect.top;
       const xPercent = (x / rect.width) * 100;
       const yPercent = (y / rect.height) * 100;
-      
+
       card.style.setProperty('--mouse-x', `${xPercent}%`);
       card.style.setProperty('--mouse-y', `${yPercent}%`);
     });
@@ -3049,11 +3280,24 @@
   applyTheme(currentTheme);
   setupCanvas();
   animateParticles();
-  
+
   // Delay hero text animation for better effect
   setTimeout(() => {
     animateHeroText();
   }, 300);
+
+  // Animate stat numbers on scroll
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const numbers = entry.target.querySelectorAll('.stat-number');
+        numbers.forEach(num => animateCounter(num));
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.about-stats').forEach(stats => statObserver.observe(stats));
 
   themeToggle.addEventListener('click', () => {
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
