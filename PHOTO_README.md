@@ -9,8 +9,9 @@ To add your photo to the resume:
    - File format: JPG, PNG, or WebP
 
 2. **Save the photo:**
-   - Name it `profile-photo.jpg` (or update the HTML if using a different name)
+   - Name the original image `profile-photo.jpg` (or update the HTML if using a different name)
    - Place it in the same directory as your `index.html` file
+   - Generate a smaller display copy named `profile-photo-600.jpg` for faster loading
 
 3. **Photo guidelines:**
    - Professional appearance

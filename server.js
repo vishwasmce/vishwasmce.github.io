@@ -3,49 +3,84 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const ROOT_DIR = __dirname;
+const mimeTypes = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+  '.webp': 'image/webp',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+};
 
-// Create HTTP server
-const server = http.createServer((req, res) => {
-  // Default to index.html for root path
-  let filePath = req.url === '/' ? '/index.html' : req.url;
-  filePath = path.join(__dirname, filePath);
-
-  // Get file extension to set correct content type
+function serveFile(filePath, res) {
   const ext = path.extname(filePath).toLowerCase();
-  const mimeTypes = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg',
-    '.gif': 'image/gif',
-    '.svg': 'image/svg+xml',
-    '.ico': 'image/x-icon',
-    '.webp': 'image/webp',
-    '.woff': 'font/woff',
-    '.woff2': 'font/woff2',
-    '.ttf': 'font/ttf',
-  };
+  const contentType = mimeTypes[ext] || 'application/octet-stream';
 
-  const contentType = mimeTypes[ext] || 'text/plain';
-
-  // Read and serve the file
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>404 - File Not Found</h1>', 'utf-8');
-      } else {
-        res.writeHead(500);
-        res.end('Sorry, check with the site admin for error: ' + err.code + ' ..\n');
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end('<h1>404 - File Not Found</h1>');
+        return;
       }
-    } else {
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
+
+      res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Sorry, check with the site admin for error: ' + err.code + ' ..\n');
+      return;
     }
+
+    res.writeHead(200, { 'Content-Type': contentType });
+    res.end(content);
+  });
+}
+
+// Create HTTP server
+const server = http.createServer((req, res) => {
+  let pathname;
+
+  try {
+    const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    pathname = decodeURIComponent(requestUrl.pathname);
+  } catch {
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('Bad request\n');
+    return;
+  }
+
+  // Default to index.html for root path
+  if (pathname === '/') {
+    pathname = '/index.html';
+  }
+
+  let filePath = path.resolve(ROOT_DIR, `.${pathname}`);
+
+  if (filePath !== ROOT_DIR && !filePath.startsWith(ROOT_DIR + path.sep)) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('Forbidden\n');
+    return;
+  }
+
+  fs.stat(filePath, (err, stats) => {
+    if (err) {
+      serveFile(filePath, res);
+      return;
+    }
+
+    if (stats.isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
+
+    serveFile(filePath, res);
   });
 });
 
