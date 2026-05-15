@@ -3,37 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Portfolio of Vishwas BS, IT Operations Engineer specializing in Azure, enterprise operations, automation, and cloud platforms." />
-  <title>Vishwas BS — IT Operations Engineer</title>
+  <meta name="description" content="Portfolio of Vishwas BS, a Cloud and IT Operations Engineer focused on Azure, automation, observability, and resilient enterprise platforms." />
+  <meta name="author" content="Vishwas BS" />
+  <meta name="theme-color" content="#0d0e12" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="canonical" href="https://vishwasmce.github.io/" />
+  <link rel="icon" href="profile-photo-600.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="profile-photo-600.jpg" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Vishwas BS - Cloud &amp; IT Operations Engineer" />
+  <meta property="og:description" content="Azure-certified IT operations portfolio covering cloud platforms, automation, observability, and enterprise application reliability." />
+  <meta property="og:url" content="https://vishwasmce.github.io/" />
+  <meta property="og:image" content="https://vishwasmce.github.io/profile-photo-600.jpg" />
+  <meta property="og:site_name" content="Vishwas BS Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vishwas BS - Cloud &amp; IT Operations Engineer" />
+  <meta name="twitter:description" content="Azure-certified portfolio focused on enterprise operations, automation, and resilient cloud platforms." />
+  <meta name="twitter:image" content="https://vishwasmce.github.io/profile-photo-600.jpg" />
+
+  <title>Vishwas BS - Cloud &amp; IT Operations Engineer</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&amp;family=DM+Sans:wght@300;400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer"/>
 
   <link rel="stylesheet" href="style.css" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vishwas BS",
+    "url": "https://vishwasmce.github.io/",
+    "image": "https://vishwasmce.github.io/profile-photo-600.jpg",
+    "jobTitle": "Cloud and IT Operations Engineer",
+    "email": "mailto:vishwasmtc27@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Stuttgart",
+      "addressRegion": "Baden-Wuerttemberg",
+      "addressCountry": "DE"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/vishwas-bs-969973140/"
+    ],
+    "knowsAbout": [
+      "Microsoft Azure",
+      "IT Operations",
+      "Azure DevOps",
+      "Infrastructure as Code",
+      "Observability",
+      "PowerShell",
+      "ITIL"
+    ],
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Stuttgart"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "BITS Pilani"
+      }
+    ]
+  }
+  </script>
+
 </head>
 <body>
 
 <!-- 3D Canvas for particle effects -->
-<canvas id="canvas3d"></canvas>
+<canvas id="canvas3d" aria-hidden="true"></canvas>
 
 <!-- Scroll Progress Bar -->
-<div id="scrollProgressBar"></div>
+<div id="scrollProgressBar" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- =============================================
      NAVIGATION
 ============================================= -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Primary navigation">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">VBS.</a>
 
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#impact">Impact</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certs</a></li>
@@ -52,9 +113,10 @@
 </nav>
 
 <!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu" hidden>
+<div class="mobile-menu" id="mobileMenu" hidden aria-label="Mobile navigation">
   <a href="#about">About</a>
   <a href="#experience">Experience</a>
+  <a href="#impact">Impact</a>
   <a href="#skills">Skills</a>
   <a href="#education">Education</a>
   <a href="#certifications">Certifications</a>
@@ -64,6 +126,8 @@
 <!-- =============================================
      HERO
 ============================================= -->
+<main id="main" tabindex="-1">
+
 <section id="hero">
   <div class="container">
     <div class="hero-grid">
@@ -71,16 +135,16 @@
       <div class="hero-content">
         <div class="hero-badge">
           <div class="hero-badge-dot"></div>
-          Working Student - DBS @ MANN+HUMMEL
+          Azure Certified · Enterprise Operations · Stuttgart
         </div>
 
         <h1 class="display-xl hero-name text-depth-3d">
-          Vishwas
+          Vishwas BS
         </h1>
 
         <p class="hero-tagline">
-          Working Student - DBS @ MANN+HUMMEL · M.Sc. Information Technology @ University of Stuttgart (TU9) ·<br>
-          M.Tech Cloud Computing @ BITS Pilani (WILP) · Microsoft Azure 7x Certified.
+          Cloud &amp; IT Operations Engineer focused on Azure, automation, observability, and resilient enterprise platforms.
+          Currently supporting Digital Business Solutions at MANN+HUMMEL while pursuing M.Sc. Information Technology at the University of Stuttgart.
         </p>
 
         <div class="hero-meta">
@@ -102,6 +166,9 @@
           <a href="mailto:vishwasmtc27@gmail.com" class="btn btn-primary">
             <i class="fa-solid fa-envelope"></i> Contact Me
           </a>
+          <a href="#impact" class="btn btn-outline">
+            <i class="fa-solid fa-chart-line"></i> View Impact
+          </a>
           <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Open LinkedIn profile in a new tab">
             <i class="fa-brands fa-linkedin"></i> LinkedIn
           </a>
@@ -116,7 +183,7 @@
           </picture>
           <div class="hero-photo-badge">
             <i class="fa-solid fa-briefcase"></i>
-            &nbsp;Working Student - DBS
+            &nbsp;Azure 7x Certified
           </div>
         </div>
       </div>
@@ -184,7 +251,7 @@
         <div class="stat-card card-3d depth-shadow glow-pulse-3d">
           <div class="card-3d-inner">
             <div class="stat-number">2</div>
-            <div class="stat-label">Masters Degrees (in progress)</div>
+            <div class="stat-label">Master's Programs</div>
           </div>
         </div>
       </div>
@@ -303,82 +370,152 @@
 <div class="section-divider"></div>
 
 <!-- =============================================
+     IMPACT
+============================================= -->
+<section id="impact">
+  <div class="container">
+    <p class="section-label reveal">// Selected Impact</p>
+    <h2 class="section-title reveal">Enterprise Work That Shows Up in Production</h2>
+
+    <div class="impact-grid">
+      <article class="impact-card card-3d depth-shadow reveal interactive-3d">
+        <div class="impact-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h3>Cloud Application Operations</h3>
+        <p>
+          Managed business-critical applications across Azure, hybrid, and on-premises environments with a focus on availability,
+          reliability, and secure day-to-day operations.
+        </p>
+        <div class="impact-tags">
+          <span>Azure</span>
+          <span>Hybrid Cloud</span>
+          <span>App Services</span>
+        </div>
+      </article>
+
+      <article class="impact-card card-3d depth-shadow reveal interactive-3d">
+        <div class="impact-icon"><i class="fa-solid fa-gauge-high"></i></div>
+        <h3>Observability &amp; Incident Response</h3>
+        <p>
+          Supported incident triage, root-cause analysis, dashboards, alerting, and operational monitoring using tools such as
+          Splunk, Dynatrace, NewRelic, Azure Monitor, and KQL.
+        </p>
+        <div class="impact-tags">
+          <span>Splunk</span>
+          <span>KQL</span>
+          <span>Azure Monitor</span>
+        </div>
+      </article>
+
+      <article class="impact-card card-3d depth-shadow reveal interactive-3d">
+        <div class="impact-icon"><i class="fa-solid fa-code-branch"></i></div>
+        <h3>Automation &amp; Delivery</h3>
+        <p>
+          Built and maintained CI/CD pipelines, supported infrastructure-as-code workflows, and automated operational tasks with
+          PowerShell, Azure CLI, Terraform, and Azure DevOps.
+        </p>
+        <div class="impact-tags">
+          <span>Azure DevOps</span>
+          <span>Terraform</span>
+          <span>PowerShell</span>
+        </div>
+      </article>
+
+      <article class="impact-card card-3d depth-shadow reveal interactive-3d">
+        <div class="impact-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Governance &amp; Service Ownership</h3>
+        <p>
+          Worked as a technical point of contact for line-of-business applications, coordinating change, compliance,
+          stakeholder communication, and ITIL-aligned service reliability.
+        </p>
+        <div class="impact-tags">
+          <span>ITIL</span>
+          <span>GDPR</span>
+          <span>Change Management</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =============================================
      SKILLS
 ============================================= -->
 <section id="skills">
   <div class="container">
     <p class="section-label reveal">// Expertise</p>
-    <h2 class="section-title reveal">Skills & Technologies</h2>
+    <h2 class="section-title reveal">Skills &amp; Technologies</h2>
 
     <div class="skills-grid">
       <div class="reveal">
-        <p class="skill-group-title">Cloud & Infrastructure</p>
+        <p class="skill-group-title">Cloud &amp; Infrastructure</p>
         <div class="skill-item">
-          <div class="skill-header"><span>Microsoft Azure</span><span class="skill-pct">95%</span></div>
+          <div class="skill-header"><span>Microsoft Azure</span><span class="skill-pct">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Azure DevOps / CI/CD</span><span class="skill-pct">88%</span></div>
+          <div class="skill-header"><span>Azure DevOps / CI/CD</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Terraform / ARM / IaC</span><span class="skill-pct">82%</span></div>
+          <div class="skill-header"><span>Terraform / ARM / IaC</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Kubernetes (AKS)</span><span class="skill-pct">78%</span></div>
+          <div class="skill-header"><span>Kubernetes (AKS)</span><span class="skill-pct">Working</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
         </div>
       </div>
 
       <div class="reveal">
-        <p class="skill-group-title">Monitoring & Observability</p>
+        <p class="skill-group-title">Monitoring &amp; Observability</p>
         <div class="skill-item">
-          <div class="skill-header"><span>Splunk / Dynatrace</span><span class="skill-pct">90%</span></div>
+          <div class="skill-header"><span>Splunk / Dynatrace</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Azure Monitor / Log Analytics</span><span class="skill-pct">92%</span></div>
+          <div class="skill-header"><span>Azure Monitor / Log Analytics</span><span class="skill-pct">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Application Insights</span><span class="skill-pct">88%</span></div>
+          <div class="skill-header"><span>Application Insights</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Kusto Query Language (KQL)</span><span class="skill-pct">85%</span></div>
+          <div class="skill-header"><span>Kusto Query Language (KQL)</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
       </div>
 
       <div class="reveal">
-        <p class="skill-group-title">Automation & Scripting</p>
+        <p class="skill-group-title">Automation &amp; Scripting</p>
         <div class="skill-item">
-          <div class="skill-header"><span>PowerShell</span><span class="skill-pct">88%</span></div>
+          <div class="skill-header"><span>PowerShell</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Azure CLI / Bash</span><span class="skill-pct">84%</span></div>
+          <div class="skill-header"><span>Azure CLI / Bash</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="84"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Python (Scripting)</span><span class="skill-pct">72%</span></div>
+          <div class="skill-header"><span>Python (Scripting)</span><span class="skill-pct">Working</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
         </div>
       </div>
 
       <div class="reveal">
-        <p class="skill-group-title">Frameworks & Processes</p>
+        <p class="skill-group-title">Frameworks &amp; Processes</p>
         <div class="skill-item">
-          <div class="skill-header"><span>ITIL / ITSM</span><span class="skill-pct">93%</span></div>
+          <div class="skill-header"><span>ITIL / ITSM</span><span class="skill-pct">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="93"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>Incident & Problem Management</span><span class="skill-pct">90%</span></div>
+          <div class="skill-header"><span>Incident &amp; Problem Management</span><span class="skill-pct">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span>GDPR / ISO / SOX Compliance</span><span class="skill-pct">86%</span></div>
+          <div class="skill-header"><span>GDPR / ISO / SOX Compliance</span><span class="skill-pct">Professional</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="86"></div></div>
         </div>
       </div>
@@ -427,7 +564,7 @@
       </div>
       <div class="edu-card card-3d depth-shadow reveal float-3d-tilt">
         <div class="edu-icon"><i class="fa-solid fa-microchip"></i></div>
-        <div class="edu-degree">B.E. – Electronics & Communication Engineering</div>
+        <div class="edu-degree">B.E. – Electronics &amp; Communication Engineering</div>
         <div class="edu-school">Malnad College of Engineering, VTU</div>
         <div class="edu-year">2016 – 2020</div>
       </div>
@@ -443,7 +580,7 @@
 <section id="certifications">
   <div class="container">
     <p class="section-label reveal">// Credentials</p>
-    <h2 class="section-title reveal">Certifications & Awards</h2>
+    <h2 class="section-title reveal">Certifications &amp; Awards</h2>
 
     <div class="cert-grid reveal">
       <div class="cert-card card-3d depth-shadow interactive-3d">
@@ -515,7 +652,7 @@
     <div class="contact-wrap">
       <div class="contact-info reveal">
         <p>
-          Reach out for profile details, project context, or professional contact related to IT operations,
+          Reach out for CV details, project context, or professional contact related to IT operations,
           cloud platforms, and digital transformation work.
         </p>
         <div class="contact-items">
@@ -537,7 +674,7 @@
             <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div>
               <div class="contact-item-label">Location</div>
-              <div class="contact-item-value">Allmandring 24A, Stuttgart 70569</div>
+              <div class="contact-item-value">Stuttgart, Germany</div>
             </div>
           </div>
           <a class="contact-item contact-item-link" href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer">
@@ -575,22 +712,24 @@
   </div>
 </section>
 
+</main>
+
 <!-- =============================================
      FOOTER
 ============================================= -->
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">
-      © 2026 Vishwas Ballenahalli Shivarudrappa · Built with ❤️ in Stuttgart
+      © 2026 Vishwas Ballenahalli Shivarudrappa · Built in Stuttgart
     </div>
     <div class="footer-socials">
       <a href="https://www.linkedin.com/in/vishwas-bs-969973140/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn">
         <i class="fa-brands fa-linkedin-in"></i>
       </a>
-      <a href="mailto:vishwasmtc27@gmail.com" class="social-link" title="Email">
+      <a href="mailto:vishwasmtc27@gmail.com" class="social-link" title="Email" aria-label="Email">
         <i class="fa-solid fa-envelope"></i>
       </a>
-      <a href="tel:+4915511318710" class="social-link" title="Phone">
+      <a href="tel:+4915511318710" class="social-link" title="Phone" aria-label="Phone">
         <i class="fa-solid fa-phone"></i>
       </a>
     </div>
