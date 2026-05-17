@@ -62,7 +62,7 @@ function applyTheme(theme) {
     themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
   if (themeColorMeta) {
-    themeColorMeta.setAttribute('content', theme === 'dark' ? '#0d0e12' : '#f5f3ee');
+    themeColorMeta.setAttribute('content', theme === 'dark' ? '#0b1017' : '#f8f5ec');
   }
   storeTheme(theme);
   currentTheme = theme;
@@ -201,7 +201,7 @@ function animateParticles() {
     return;
   }
 
-  ctx.fillStyle = getComputedStyle(html).getPropertyValue('--bg').trim();
+  ctx.fillStyle = getComputedStyle(html).getPropertyValue('--page-bg').trim();
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
   const isLight = html.getAttribute('data-theme') === 'light';

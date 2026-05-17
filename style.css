@@ -2,9 +2,23 @@
    CSS VARIABLES & THEMING
 ============================================= */
 :root {
-  --bg:          #0d0e12;
-  --bg2:         #13151c;
-  --bg3:         #1a1d27;
+  --bg:          #0b1017;
+  --bg2:         #101826;
+  --bg3:         #16212a;
+  --page-bg:     #0b1017;
+  --hero-bg:     #0b1017;
+  --section-bg-a:#101826;
+  --section-bg-b:#0e1918;
+  --section-bg-c:#151423;
+  --section-bg-d:#111a13;
+  --footer-bg-a: rgba(12, 17, 25, 0.96);
+  --footer-bg-b: rgba(18, 31, 34, 0.88);
+  --ambient-a:   rgba(201,168,76,0.07);
+  --ambient-b:   rgba(100,182,166,0.06);
+  --ambient-c:   rgba(107,121,196,0.05);
+  --hero-glow-a: rgba(201,168,76,0.10);
+  --hero-glow-b: rgba(100,182,166,0.10);
+  --hero-glow-c: rgba(107,121,196,0.08);
   --border:      rgba(255,255,255,0.07);
   --text:        #e8e6df;
   --text-muted:  #8a8880;
@@ -18,9 +32,23 @@
   --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
 }
 [data-theme="light"] {
-  --bg:          #f5f3ee;
-  --bg2:         #ede9e0;
-  --bg3:         #e4dfd4;
+  --bg:          #f8f5ec;
+  --bg2:         #edf6f2;
+  --bg3:         #e6ece9;
+  --page-bg:     #f8f5ec;
+  --hero-bg:     #f8f5ec;
+  --section-bg-a:#edf6f2;
+  --section-bg-b:#f0f3fb;
+  --section-bg-c:#f7eef3;
+  --section-bg-d:#f2f4e8;
+  --footer-bg-a: rgba(248,245,236,0.96);
+  --footer-bg-b: rgba(235,246,242,0.9);
+  --ambient-a:   rgba(184,146,42,0.10);
+  --ambient-b:   rgba(47,143,131,0.09);
+  --ambient-c:   rgba(107,121,196,0.07);
+  --hero-glow-a: rgba(184,146,42,0.13);
+  --hero-glow-b: rgba(47,143,131,0.11);
+  --hero-glow-c: rgba(107,121,196,0.09);
   --border:      rgba(0,0,0,0.08);
   --text:        #1a1710;
   --text-muted:  #7a7570;
@@ -55,7 +83,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
+  background: var(--page-bg);
   color: var(--text);
   overflow-x: hidden;
   transition: background var(--transition), color var(--transition);
@@ -76,6 +104,7 @@ ul { list-style: none; }
 section {
   padding: 100px 0;
   scroll-margin-top: 88px;
+  transition: background var(--transition);
 }
 
 main:focus {
@@ -270,6 +299,7 @@ nav:hover {
   padding-top: 80px;
   position: relative;
   overflow: hidden;
+  background: var(--hero-bg);
 }
 /* Decorative bg shapes */
 #hero::after {
@@ -277,10 +307,12 @@ nav:hover {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg, rgba(201,168,76,0.08), transparent 38%),
-    linear-gradient(315deg, rgba(100,182,166,0.08), transparent 42%);
+    radial-gradient(circle at 12% 18%, var(--hero-glow-a), transparent 34%),
+    radial-gradient(circle at 85% 22%, var(--hero-glow-b), transparent 30%),
+    linear-gradient(135deg, var(--hero-glow-c), transparent 46%);
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.78;
+  transition: background var(--transition), opacity var(--transition);
 }
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -462,7 +494,7 @@ nav:hover {
 /* =============================================
    ABOUT
 ============================================= */
-#about { background: var(--bg2); }
+#about { background: var(--section-bg-a); }
 
 .about-grid {
   display: grid;
@@ -521,7 +553,7 @@ nav:hover {
 /* =============================================
    EXPERIENCE TIMELINE
 ============================================= */
-#experience { background: var(--bg); }
+#experience { background: var(--section-bg-b); }
 
 .timeline {
   position: relative;
@@ -626,7 +658,7 @@ nav:hover {
 /* =============================================
    IMPACT
 ============================================= */
-#impact { background: var(--bg2); }
+#impact { background: var(--section-bg-c); }
 
 .impact-grid {
   display: grid;
@@ -706,7 +738,7 @@ nav:hover {
 /* =============================================
    SKILLS
 ============================================= */
-#skills { background: var(--bg); }
+#skills { background: var(--section-bg-d); }
 
 .skills-grid {
   display: grid;
@@ -777,7 +809,7 @@ nav:hover {
 /* =============================================
    EDUCATION
 ============================================= */
-#education { background: var(--bg2); }
+#education { background: var(--section-bg-a); }
 
 .edu-grid {
   display: grid;
@@ -837,7 +869,7 @@ nav:hover {
 /* =============================================
    CERTIFICATIONS
 ============================================= */
-#certifications { background: var(--bg); }
+#certifications { background: var(--section-bg-b); }
 
 .cert-grid {
   display: grid;
@@ -895,7 +927,7 @@ nav:hover {
 /* =============================================
    CONTACT
 ============================================= */
-#contact { background: var(--bg2); }
+#contact { background: var(--section-bg-c); }
 
 .contact-wrap {
   display: grid;
@@ -993,7 +1025,7 @@ nav:hover {
    FOOTER
 ============================================= */
 footer {
-  background: linear-gradient(135deg, rgba(19, 21, 28, 0.9) 0%, rgba(26, 29, 39, 0.8) 100%);
+  background: linear-gradient(135deg, var(--footer-bg-a) 0%, var(--footer-bg-b) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 32px;
   text-align: center;
@@ -1002,7 +1034,6 @@ footer {
 }
 
 [data-theme="light"] footer {
-  background: linear-gradient(135deg, rgba(245, 243, 238, 0.9) 0%, rgba(237, 233, 224, 0.8) 100%);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 .footer-inner {
@@ -1581,22 +1612,14 @@ body::after {
   height: 100%;
   z-index: -2;
   background: linear-gradient(-45deg,
-                              var(--bg) 0%,
-                              rgba(201,168,76,0.05) 25%,
-                              var(--bg) 50%,
-                              rgba(100,182,166,0.04) 75%,
-                              var(--bg) 100%);
+                              var(--page-bg) 0%,
+                              var(--ambient-a) 25%,
+                              var(--ambient-b) 50%,
+                              var(--ambient-c) 75%,
+                              var(--page-bg) 100%);
   background-size: 400% 400%;
   animation: none;
-}
-
-[data-theme="light"] body::after {
-  background: linear-gradient(-45deg,
-                              var(--bg) 0%,
-                              rgba(184,146,42,0.08) 25%,
-                              var(--bg) 50%,
-                              rgba(47,143,131,0.06) 75%,
-                              var(--bg) 100%);
+  transition: background var(--transition);
 }
 
 @keyframes aiGradient {
@@ -1670,15 +1693,15 @@ body::after {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Blur reveal on scroll */
+/* Reveal on scroll (optimized from blur) */
 .blur-reveal {
-  filter: blur(10px);
-  opacity: 0.5;
-  transition: filter 0.6s ease, opacity 0.6s ease;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .blur-reveal.visible {
-  filter: blur(0);
+  transform: scale(1);
   opacity: 1;
 }
 
@@ -2127,27 +2150,24 @@ section {
   pointer-events: none;
 }
 
-/* Glow pulse 3D */
+/* Glow pulse 3D (Optimized using transform/opacity) */
 @keyframes glowPulse3d {
   0% {
-    box-shadow: 0 0 5px var(--accent-glow),
-                inset 0 0 5px rgba(201,168,76,0.1);
+    opacity: 1;
     transform: scale(1) rotateZ(0deg);
   }
   50% {
-    box-shadow: 0 0 25px var(--accent-glow),
-                inset 0 0 15px rgba(201,168,76,0.2),
-                0 0 50px rgba(201,168,76,0.15);
+    opacity: 0.7;
     transform: scale(1.02) rotateZ(1deg);
   }
   100% {
-    box-shadow: 0 0 5px var(--accent-glow),
-                inset 0 0 5px rgba(201,168,76,0.1);
+    opacity: 1;
     transform: scale(1) rotateZ(0deg);
   }
 }
 
 .glow-pulse-3d {
+  box-shadow: 0 0 15px var(--accent-glow), inset 0 0 10px rgba(201,168,76,0.1);
   animation: none;
 }
 
@@ -2401,23 +2421,24 @@ section {
   z-index: 1;
 }
 
-/* Glow Cursor Effect */
+/* Glow Cursor Effect (Optimized) */
 @keyframes glowCursor {
   0% {
-    box-shadow: 0 0 20px rgba(201, 168, 76, 0.5),
-                inset 0 0 20px rgba(201, 168, 76, 0.2);
+    transform: scale(1);
+    opacity: 0.6;
   }
   50% {
-    box-shadow: 0 0 40px rgba(201, 168, 76, 0.8),
-                inset 0 0 30px rgba(201, 168, 76, 0.3);
+    transform: scale(1.3);
+    opacity: 1;
   }
   100% {
-    box-shadow: 0 0 20px rgba(201, 168, 76, 0.5),
-                inset 0 0 20px rgba(201, 168, 76, 0.2);
+    transform: scale(1);
+    opacity: 0.6;
   }
 }
 
 .glow-cursor {
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.6), inset 0 0 20px rgba(201, 168, 76, 0.3);
   animation: glowCursor 2s ease-in-out infinite;
 }
 
@@ -2447,14 +2468,14 @@ section {
   transform: scale(1.05) translateY(-8px);
 }
 
-/* Blur & Reveal */
+/* Fade & Reveal (Optimized from Blur & Reveal) */
 @keyframes blurReveal {
   0% {
-    filter: blur(10px);
+    transform: translateY(10px) scale(0.95);
     opacity: 0;
   }
   100% {
-    filter: blur(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }

@@ -39,7 +39,12 @@ function serveFile(filePath, res) {
       return;
     }
 
-    res.writeHead(200, { 'Content-Type': contentType });
+    const headers = { 'Content-Type': contentType };
+    // Cache images and fonts for 1 day to improve performance
+    if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.woff', '.woff2', '.ttf'].includes(ext)) {
+      headers['Cache-Control'] = 'public, max-age=86400';
+    }
+    res.writeHead(200, headers);
     res.end(content);
   });
 }
@@ -84,34 +89,45 @@ const server = http.createServer((req, res) => {
   });
 });
 
-// Start server
-server.listen(PORT, () => {
-  const url = `http://localhost:${PORT}`;
-  console.log(`🚀 Server running at ${url}`);
-  console.log(`Press Ctrl+C to stop the server\n`);
+// Start server with port conflict handling
+function startServer(port) {
+  server.listen(port, () => {
+    const url = `http://localhost:${port}`;
+    console.log(`🚀 Server running at ${url}`);
+    console.log(`Press Ctrl+C to stop the server\n`);
 
-  // Open in default browser
-  const platform = process.platform;
-  let command;
+    // Open in default browser
+    const platform = process.platform;
+    let command;
 
-  switch (platform) {
-    case 'darwin':
-      command = `open "${url}"`;
-      break;
-    case 'win32':
-      command = `start ${url}`;
-      break;
-    case 'linux':
-      command = `xdg-open "${url}"`;
-      break;
-    default:
-      console.log(`Please open ${url} in your browser`);
-      return;
-  }
+    switch (platform) {
+      case 'darwin':
+        command = `open "${url}"`;
+        break;
+      case 'win32':
+        command = `start ${url}`;
+        break;
+      case 'linux':
+        command = `xdg-open "${url}"`;
+        break;
+      default:
+        console.log(`Please open ${url} in your browser`);
+        return;
+    }
 
-  exec(command, (error) => {
-    if (error) {
-      console.log(`Please open ${url} in your browser manually`);
+    exec(command, (error) => {
+      if (error) {
+        console.log(`Please open ${url} in your browser manually`);
+      }
+    });
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`⚠️ Port ${port} is in use, trying port ${port + 1}...`);
+      startServer(port + 1);
+    } else {
+      console.error('Server error:', err);
     }
   });
-});
+}
+
+startServer(PORT);
