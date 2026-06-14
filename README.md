@@ -21,5 +21,5 @@ PORT=4000 node server.js
 - `index.html` contains the page structure.
 - `style.css` contains the site styling and responsive layout.
 - `script.js` contains theme, menu, animation, and contact-form behavior.
-- `profile-photo.jpg` is the original photo.
-- `profile-photo-600.jpg` is the optimized display-size photo used by the page.
+- `profile-photo.png` is the original photo.
+- `profile-photo-600.png` is the optimized display-size photo used by the page.
