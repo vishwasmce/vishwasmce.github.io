@@ -39,7 +39,25 @@ function storeTheme(theme) {
 }
 
 function canUseAmbientMotion() {
-  return Boolean(ctx && canvas && !motionQuery.matches && !pointerQuery.matches && window.innerWidth >= 768);
+  // Check for reduced motion preferences
+  if (motionQuery.matches) return false;
+  
+  // Check for touch devices
+  if (pointerQuery.matches) return false;
+  
+  // Check screen size
+  if (window.innerWidth < 768) return false;
+  
+  // Check for low memory devices (if available)
+  if (navigator.deviceMemory && navigator.deviceMemory <= 2) return false;
+  
+  // Check for low performance (if available)
+  if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) return false;
+  
+  // Canvas is available
+  if (!ctx || !canvas) return false;
+  
+  return true;
 }
 
 function addQueryListener(query, handler) {
